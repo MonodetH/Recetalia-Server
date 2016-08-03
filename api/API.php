@@ -32,7 +32,17 @@
 			
 			$url = CoreUrlManager::getUrl();
 			
-			print_r($url);
+			//print_r($url);
+
+			header('X-PHP-Response-Code: 204', true, 204); // Setea la respuesta con codigo http 204
+
+			// Imprimir como respuesta los datos de la llamada
+			echo "CALL:<br>";
+			print("<pre>".print_r($_SERVER,true)."</pre>");
+
+
+
+
 
 			/*
 			//redireccionar a controlador

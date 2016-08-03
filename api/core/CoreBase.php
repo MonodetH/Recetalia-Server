@@ -5,7 +5,7 @@
 	#
 	
 	class CoreBase{
-		## Metodos estaticos
+		## Metodos estaticos ##
 
 		# disparador de Controlador
 		public static function runController($control = 'inicio',$request = 'render',$data = array()){
