@@ -1,4 +1,4 @@
-<?
+<?php
 	/*
 	 * Este archivo es usado para hacer consultas a la api
 	 * simulando a un cliente. 
@@ -11,6 +11,6 @@
 	echo "<br>";
 	echo "RESPONSE HEADER:<br>";
 	print("<pre>".print_r($http_response_header,true)."</pre>");
-	echo "<br>";
+	echo "<br></html>";
 
 ?>

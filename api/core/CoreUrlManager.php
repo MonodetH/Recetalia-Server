@@ -1,4 +1,4 @@
-<? 
+<?php
 	#
 	# CoreUrlManager class file
 	# Manejo de urls amigables

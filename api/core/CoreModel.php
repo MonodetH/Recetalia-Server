@@ -1,4 +1,4 @@
-<?
+<?php
 	#
 	# CoreModel class file
 	# Clase base para la creacion de modelos

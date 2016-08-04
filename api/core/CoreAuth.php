@@ -1,4 +1,4 @@
-<?
+<?php
 	#
 	# CoreAuth class file
 	# Asistente de autenticacion

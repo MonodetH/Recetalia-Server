@@ -1,4 +1,4 @@
-<?
+<?php
 	#
 	# CorePage class file
 	# Clase maestra para la construccion de controladores (colecciones)

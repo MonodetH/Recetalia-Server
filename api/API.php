@@ -1,4 +1,4 @@
-<?
+<?php
 	#
 	# Constructor de la API
 	# Carga configuracion, incluye librerias y 

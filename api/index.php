@@ -1,4 +1,4 @@
-<?
+<?php
 	#
 	# Punto de entrada de la API. Crea y ejecuta la aplicacion
 	#
