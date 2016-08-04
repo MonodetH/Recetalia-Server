@@ -3,7 +3,7 @@
 	# CorePage class file
 	# Clase maestra para la construccion de controladores (colecciones)
 
-	class CoreController{
+	abstract class CoreController{
 		## 
 
 		// Permisos necesarios para ejecutar controlador
@@ -44,9 +44,25 @@
 
 		## Metodos de objeto ##
 
-		protected function render(){
-			CBase::renderView('home',$this->data);
-		}	
+		protected function GET(){
+			CoreHTTP::setStatusCode(405);
+		}
+		protected function POST(){
+			CoreHTTP::setStatusCode(405);
+		}
+		protected function PUT(){
+			CoreHTTP::setStatusCode(405);
+		}
+		protected function DELETE(){
+			CoreHTTP::setStatusCode(405);
+		}
+		protected function PATCH(){
+			CoreHTTP::setStatusCode(405);
+		}
+		protected function HEAD(){
+			CoreHTTP::setStatusCode(405);
+		}
+		abstract protected function OPTIONS();
 
 		
 	}
