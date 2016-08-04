@@ -4,7 +4,22 @@
 	 * simulando a un cliente. 
  	 */
 
-	$response = file_get_contents('http://localhost/recetalia-server/api/Ingredients?sort=date');
+	//TEST
+	$opciones = array(
+	  	'http'=>array(
+	    	'method'=>"GET",
+	    	'header'=>"Accept-language: en\r\n" .
+	              "Cookie: foo=bar\r\n" .
+	              "X-AuthToken: MonitoDelBoom\r\n".
+	              "Accept: application/json\r\n"
+	  	)
+	);
+
+	$contexto = stream_context_create($opciones);
+
+	//FIN_TEST
+
+	$response = file_get_contents('http://localhost/recetalia-server/api/Ingredients?sort=date',false,$contexto);
 
 	echo "RESPONSE:<br>";
 	print("<pre>".print_r($response,true)."</pre>");

@@ -12,7 +12,38 @@
 		 * por parte del servidor
 		 */
 
-		
+		//Agregar algo a HTTP 
+		//Agregar funcion que recibe una peticion y encodea la respuesta en cierto formato (desde $_SERVER[HTTP_ACCEPT])
+
+		/*Funcion que se encarga de dar formato a la respuesta por parte del servidor
+		*Recibe texto en la variable $body
+		*Dependiendo de lo que posea HTTP_ACCEPT da el formato
+		*Imprime por pantalla, por lo que no necesita retorno
+		*/
+		public static function encodeResponse($body){
+			if(isset($_SERVER["HTTP_ACCEPT"])){
+				switch ($_SERVER["HTTP_ACCEPT"]){
+					case "application/xml":
+					//ARREGLAR
+						/*$xml = new SimpleXMLElement('<root/>');
+						array_walk_recursive($body, array ($xml,'addChild'));
+						echo $xml->asXML();*/
+						break;
+
+					case "text/plain":
+						print_r($body);
+						break;
+
+					default:
+						echo json_encode($body);
+						break;
+				}
+			}else{
+				echo json_encode($body);
+			}
+			
+		}
+
 		/* setStatusCode
 		 * Setea la cabecera HTTP principal de la respuesta con el protocolo http/1.1
 		 * y un codigo de status.

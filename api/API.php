@@ -37,9 +37,7 @@
 
 			// Imprimir como respuesta los datos de la llamada
 			echo "CALL:<br>";
-			print("<pre>".print_r($_SERVER,true)."</pre>");
-
-
+			CoreHTTP::encodeResponse($_SERVER);
 
 
 
