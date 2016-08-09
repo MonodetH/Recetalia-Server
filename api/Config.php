@@ -15,12 +15,14 @@
 		);
 
 		
+		public static $locale = 'es-CL';
+
 		public static $config = array(
 			/* Datos de base de datos */
-			'BD' => array(
-				'server' => '',
-				'bd' => '',
-				'user' => '',
+			'DB' => array(
+				'server' => 'localhost',
+				'db' => 'Recetalia',
+				'user' => 'root',
 				'password' => ''
 				)
 		);

@@ -31,20 +31,22 @@
 			$string = '';
 			foreach (static::$_scheme as $columna => $options) {
 				if(array_key_exists($columna, $values) && $columna != NULL){
-					$value = ($options['encode'])? 
-						crypt(trim($values[$columna])) : 
-						$mysqli->real_escape_string(trim($values[$columna]));
+					$value = $mysqli->real_escape_string(trim($values[$columna]));
 
 					if($string != ''){
-						$string .= ($options['tipo']=='int' || ($value===NULL && $options['default']=='NULL'))? (','.$value):(",'".$value."'");
+						$string .= ($options['tipo']=='int' || ($value===NULL && $options['default']=='NULL'))? 
+						(','.$value):(",'".$value."'");
 					}else{
-						$string .= ($options['tipo']=='int' || ($value===NULL && $options['default']=='NULL'))? $value:("'".$value."'");
+						$string .= ($options['tipo']=='int' || ($value===NULL && $options['default']=='NULL'))? 
+						$value:("'".$value."'");
 					}
 				}else{
 					if($string != ''){
-						$string .= ($options['tipo']=='int' || ($value===NULL && $options['default']=='NULL'))? (','.$options['default']):(",'".$options['default']."'");
+						$string .= ($options['tipo']=='int' || ($options['default']=='NULL'))? 
+						(','.$options['default']):(",'".$options['default']."'");
 					}else{
-						$string .= ($options['tipo']=='int' || ($value===NULL && $options['default']=='NULL'))? $options['default']:("'".$options['default']."'");
+						$string .= ($options['tipo']=='int' || ($options['default']=='NULL'))? 
+						$options['default']:("'".$options['default']."'");
 					}
 				}
 			}
@@ -101,6 +103,7 @@
 			if($mysqli==NULL){return;}
 
 			$values = self::parseInsValues($mysqli,$registro);
+			printf("INSERT INTO %s(%s) VALUES(%s);",static::$_table, self::columns(),$values);
 			$query = sprintf("INSERT INTO %s(%s) VALUES(%s);",static::$_table, self::columns(),$values);
 
 			$mysqli->query($query);

@@ -61,6 +61,74 @@
 			header('Location:'.$redir);
 		}
 
+		# Obtiene la URL de la llamada y la devuelve como array
+		public static function getApiCall() {
+			$param = array();
+			$url = parse_url($_SERVER['REQUEST_URI']);
+
+			foreach(explode("/", $url['path']) as $p){
+				if ($p!='') {$param[] = $p;} 
+			}
+
+			$flag = 0;
+			foreach($param as $value){
+				switch ($flag) {
+					case 1:
+						$apiCall['controller'] = $value;
+						$flag++;
+						break;
+					case 2:
+						$apiCall['method'] = $value;
+						$flag++;
+						break;
+					case 3:
+						$apiCall['controller2'] = $value;
+						$flag++;
+						break;
+					case 4:
+						$apiCall['method2'] = $value;
+						$flag++;
+						break;
+				}
+				if($value == 'api') $flag = 1;
+			} 
+
+			foreach(explode("&", $url['query']) as $option){
+				if ($option!='') {
+					$option = explode("=", $option);
+					if($option[0]!='' && isset($option[1]) && $option[1]!=''){
+						foreach(explode(",", $option[1]) as $value){
+							if ($value!='') {$apiCall['options'][$option[0]][] = $value;} 
+						}
+					}
+				} 
+			}
+
+			return $apiCall;
+		}
+
+		# Devuelve un string que puede ser usado como url
+		public static function encodeUrl($url){
+			// Tranformamos todo a minusculas
+			$url = strtolower($url);
+
+			//Rememplazamos caracteres especiales latinos
+			$find = array('á', 'é', 'í', 'ó', 'ú', 'ñ');
+			$repl = array('a', 'e', 'i', 'o', 'u', 'n');
+			$url = str_replace ($find, $repl, $url);
+			
+			// Añadimos los guiones
+			$find = array(' ', '&', '\r\n', '\n', '+'); 
+			$url = str_replace ($find, '-', $url);
+
+			// Eliminamos y Reemplazamos demás caracteres especiales
+			$find = array('/[^a-z0-9\-<>]/', '/[\-]+/', '/<[^>]*>/');
+			$repl = array('', '-', '');
+			$url = preg_replace ($find, $repl, $url);
+
+			return $url;
+		}
+
 		/* Array asociativo de los codigos de estado de HTTP y su significado */
 		protected static $_http_codes = array(
 		    100 => 'Continue',
