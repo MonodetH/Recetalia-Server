@@ -17,8 +17,10 @@
 
 
 		/*
+		 *Funcion que obtiene el nombre del usuario 
 		*/
 		private static function getUser(){
+			return ($_SERVER["HTTP_X_AUTHTOKEN"]);
 		}
 		
 
@@ -30,6 +32,7 @@
 		public static function hasPermitions(){
 			$name = CoreAuth::getUser();
 			//Solicitar a la BD el ID del creador de la receta
+			$author = '';
 
 			if($name === $author){
 				return TRUE;
