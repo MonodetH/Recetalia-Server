@@ -49,7 +49,8 @@
 			echo "CALL:<br>";
 			CoreHTTP::encodeResponse($_SERVER);
 
-
+			//Se entrega el idioma del usuario
+			echo '<br>User Language: '.CoreHTTP::getLocale().'<br>';
 
 			/*
 			
@@ -66,5 +67,6 @@
 
 			*/
 		}
+
 	}
 ?>

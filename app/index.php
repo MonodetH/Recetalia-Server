@@ -9,9 +9,8 @@
 	  	'http'=>array(
 	    	'method'=>"GET",
 	    	'header'=>"Accept-language: en\r\n" .
-	              "Cookie: foo=bar\r\n" .
 	              "X-AuthToken: MonitoDelBoom\r\n".
-	              "Accept: application/json\r\n"
+	              "Accept: text/plain\r\n"
 	  	)
 	);
 

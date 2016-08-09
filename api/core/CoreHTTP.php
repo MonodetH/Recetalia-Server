@@ -12,8 +12,27 @@
 		 * por parte del servidor
 		 */
 
-		//Agregar algo a HTTP 
+		/*
+		 *Funcion encargada de consultar el servidor por el idioma del cliente y lo retorna
+		*/
+		public static function getLocale(){
+			return ($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+		}
+		
 		//Agregar funcion que recibe una peticion y encodea la respuesta en cierto formato (desde $_SERVER[HTTP_ACCEPT])
+
+		/*Funcion encargada de manualmente traspasar un texto con formato de "array" a un texto con formato XML
+		*Recibe un objeto SimpleXMLElement y el arreglo a transformar
+		*Se recorre el arreglo (con foreach, lo que siginfica que posee "llaves" y "valores")
+		*Y transforma aquellas "llaves" y "valores" a formato XML (ej: [A] => b lo transforma a <A> b </A>)
+		*Cada vez que el valor sea un arreglo, se hace una llamada recursiva
+		*/
+		private static function array_to_xml(array $arr, SimpleXMLElement $xml){
+			foreach ($arr as $key => $value) {
+				is_array($value)?array_to_xml($value,$xml->addChild($key)):$xml->addChild($key,$value);
+			}
+			return $xml;
+		}
 
 		/*Funcion que se encarga de dar formato a la respuesta por parte del servidor
 		*Recibe texto en la variable $body
@@ -23,17 +42,19 @@
 		public static function encodeResponse($body){
 			if(isset($_SERVER["HTTP_ACCEPT"])){
 				switch ($_SERVER["HTTP_ACCEPT"]){
+					//Retorna el texto en formato XML
 					case "application/xml":
-					//ARREGLAR
-						/*$xml = new SimpleXMLElement('<root/>');
-						array_walk_recursive($body, array ($xml,'addChild'));
-						echo $xml->asXML();*/
+						$xml = new SimpleXMLElement('<response/>');
+						$xml = CoreHTTP::array_to_xml($body,$xml);
+						echo $xml->asXML();
 						break;
-
+						
+					//Retorna texto plano
 					case "text/plain":
 						print_r($body);
 						break;
 
+					//Retorna el texto en formato JSON (por defecto)
 					default:
 						echo json_encode($body);
 						break;
