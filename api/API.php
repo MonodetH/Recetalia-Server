@@ -42,6 +42,7 @@
 
 			#######################
 			###### TEST ZONE ######
+			/*
 
 			print_r($url);
 
@@ -56,6 +57,7 @@
 			//Se entrega el idioma del usuario
 			echo '<br>User Language: '.CoreHTTP::getLocale().'<br>';
 
+			*/
 			#### END TEST ZONE ####
 			#######################
 

@@ -10,8 +10,7 @@
 		protected static $_scheme = array();
 		/*
 		* array(
-		*	'id' => array(	'tipo' => 'int', 
-		+					'encode' => false,
+		*	'id' => array(	'tipo' => 'int',
 		+					'default' => NULL)
 		* );
 		* Tipos: int, text.
@@ -59,9 +58,7 @@
 			foreach ($update as $key => $value) {
 				if(array_key_exists($key, static::$_scheme)){
 					$options = static::$_scheme[$key];
-					$value = ($options['encode'])? 
-						crypt(trim($value)) : 
-						$mysqli->real_escape_string(trim($value));
+					$value = $mysqli->real_escape_string(trim($values[$columna]));
 
 					if($string != ''){
 						$string .= ($options['tipo']=='int' || $value===NULL)? (','.$key."=".$value):(",".$key."='".$value."'");

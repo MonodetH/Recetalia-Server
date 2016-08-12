@@ -16,6 +16,12 @@
 		protected function metodo(){
 			echo "Este es el metodo METODO";
 		}
+
+		protected function getUser(){
+			$userData = MUsuario::getUserById(61);
+
+			CoreHTTP::encodeResponse($userData);
+		}
 		
 	}
 ?>

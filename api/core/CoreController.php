@@ -33,6 +33,8 @@
 				$this->id();
 			} elseif(method_exists($this,$method)){
 				$this->$method();
+			} else{
+				echo "No existe metodo";
 			}
 		}
 
