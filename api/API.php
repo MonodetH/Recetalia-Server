@@ -35,10 +35,14 @@
 
 		}		
 		
-		#punto de partida de la aplicacion
+		# Punto de partida de la aplicacion
 		public function run(){
-			
+			// Se recupera los datos desde la url
 			$url = CoreHTTP::getApiCall();
+
+			#######################
+			###### TEST ZONE ######
+
 			print_r($url);
 
 			//MUsuario::insertar(array("username"=>"will smith","rank"=>11));
@@ -52,20 +56,18 @@
 			//Se entrega el idioma del usuario
 			echo '<br>User Language: '.CoreHTTP::getLocale().'<br>';
 
-			/*
-			
-			//redireccionar a controlador
-			if(isset($url[0])){
-				if(isset($url[1])){
-					CoreBase::runController($url[0],$url[1]);
-				}else{
-					CoreBase::runController($url[0]);			
-				}
+			#### END TEST ZONE ####
+			#######################
+
+			// Redireccionar a controlador
+			if(isset($url['controller'])){
+				$controller = new $url['controller']($url);
+				$controller->run();
 			}else{
-				CoreBase::runController();
+				// Mostrar documentacion y llamadas de la api
+				echo "Mostrar documentacion y llamadas de la api";
 			}
 
-			*/
 		}
 
 	}
