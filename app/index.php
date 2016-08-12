@@ -18,7 +18,8 @@
 
 	//FIN_TEST
 
-	$response = file_get_contents('http://localhost/recetalia-server/api/Recipe/32/Ingredients/?sort=date,rank',false,$contexto);
+	//$response = file_get_contents('http://localhost/recetalia-server/api/Recipe/32/Ingredients/?sort=date,rank',false,$contexto);
+	$response = file_get_contents('http://localhost/recetalia-server/api/Ingredients/metodo',false,$contexto);
 
 	echo "RESPONSE:<br>";
 	print("<pre>".print_r($response,true)."</pre>");
