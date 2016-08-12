@@ -112,15 +112,17 @@
 				if($value == 'api') $flag = 1;
 			} 
 
-			foreach(explode("&", $url['query']) as $option){
-				if ($option!='') {
-					$option = explode("=", $option);
-					if($option[0]!='' && isset($option[1]) && $option[1]!=''){
-						foreach(explode(",", $option[1]) as $value){
-							if ($value!='') {$apiCall['options'][$option[0]][] = $value;} 
+			if(isset($url['query'])){
+				foreach(explode("&", $url['query']) as $option){
+					if ($option!='') {
+						$option = explode("=", $option);
+						if($option[0]!='' && isset($option[1]) && $option[1]!=''){
+							foreach(explode(",", $option[1]) as $value){
+								if ($value!='') {$apiCall['options'][$option[0]][] = $value;} 
+							}
 						}
-					}
-				} 
+					} 
+				}
 			}
 
 			return $apiCall;
